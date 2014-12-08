@@ -1,0 +1,20 @@
+#! /bin/bash
+
+defaultParams="-c -d 5"
+
+area=`xrectsel`
+
+size=`echo $area | cut -f1 -d+`
+coords=`echo $area | cut -f2- -d+`
+
+width=`echo $size | cut -f1 -dx`
+height=`echo $size | cut -f2 -dx`
+
+left=`echo $coords | cut -f1 -d+`
+top=`echo $coords | cut -f2 -d+`
+
+filename=`date +"%y-%m-%d_%H-%M-%S"`.gif
+
+byzanz-record -x $left -y $top -w $width -h $height $defaultParams $filename
+
+echo Saved as $filename
